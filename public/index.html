@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Details Manager</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark">SD</div>
+    <div>
+      <h1>Student Details</h1>
+      <p>Student records management</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="welcome">
+      <div>
+        <p class="eyebrow">STUDENT ADMINISTRATION</p>
+        <h2>Manage your students</h2>
+        <p class="subheading">Add, search, update, and remove student records in one place.</p>
+      </div>
+      <button id="addStudentBtn" class="primary-btn">＋ Add student</button>
+    </section>
+
+    <section class="stats">
+      <article class="stat-card"><span>Total students</span><strong id="totalCount">0</strong></article>
+      <article class="stat-card"><span>Departments</span><strong id="departmentCount">0</strong></article>
+      <article class="stat-card"><span>Visible records</span><strong id="visibleCount">0</strong></article>
+    </section>
+
+    <section class="panel">
+      <div class="toolbar">
+        <div>
+          <h3>Student directory</h3>
+          <p class="muted">Select Edit to change a student's information.</p>
+        </div>
+        <input id="searchInput" type="search" placeholder="Search name, roll no., department…" aria-label="Search students">
+      </div>
+      <div id="notice" class="notice" role="status"></div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Student</th><th>Roll number</th><th>Department</th><th>Year</th><th>Contact</th><th>Actions</th></tr>
+          </thead>
+          <tbody id="studentTableBody">
+            <tr><td colspan="6" class="empty">Loading student records…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <p class="footer-note">Student Details Manager · Keep student information private and share access only with authorized people.</p>
+  </main>
+
+  <div id="studentModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <div class="modal-heading">
+        <div><p class="eyebrow">STUDENT RECORD</p><h2 id="modalTitle">Add student</h2></div>
+        <button id="closeModalBtn" class="icon-btn" aria-label="Close">×</button>
+      </div>
+      <form id="studentForm">
+        <input type="hidden" id="studentId">
+        <div class="form-grid">
+          <label>Full name *<input id="studentName" required maxlength="150" placeholder="Enter full name"></label>
+          <label>Roll number *<input id="rollNumber" required maxlength="50" placeholder="e.g. 24CS001"></label>
+          <label>Department *<input id="department" required maxlength="100" placeholder="e.g. CSE"></label>
+          <label>Year of study *<select id="yearOfStudy" required><option value="">Choose year</option><option>1st Year</option><option>2nd Year</option><option>3rd Year</option><option>4th Year</option><option>Other</option></select></label>
+          <label>Email<input id="email" type="email" maxlength="180" placeholder="student@example.com"></label>
+          <label>Phone number<input id="phone" maxlength="40" placeholder="Enter phone number"></label>
+          <label class="full-width">Address<textarea id="address" rows="3" placeholder="Enter address"></textarea></label>
+        </div>
+        <p class="required-note">* Required fields. Roll numbers must be unique.</p>
+        <div class="modal-actions"><button type="button" id="cancelBtn" class="secondary-btn">Cancel</button><button type="submit" id="saveBtn" class="primary-btn">Save student</button></div>
+      </form>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
